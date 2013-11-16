@@ -47,33 +47,29 @@ public class Player extends Entity {
 		inputState = input.getState();
 
 		float xMotion = 0;
-		if (inputState.isButtonDown(Buttons.Left))
+		if (inputState.isButtonDown(Buttons.Left) && !inputState.isButtonDown(Buttons.Right))
 		{
 			game.footsteps--;
 			xMotion--;
 			startedWalking = true;
 			playingAnimation = false;
 			rightBtn = false;
-			System.out.println("right button pressed");
 		}
-		else if (inputState.isButtonDown(Buttons.Right))
+		else if (inputState.isButtonDown(Buttons.Right) && !inputState.isButtonDown(Buttons.Left))
 		{
 			xMotion++;
 			game.footsteps++;
 			startedWalking = true;
 			playingAnimation = false;
 			rightBtn = true;
-			System.out.println("left button pressed");
 		}
 		else
 		{
-			System.out.println("no button pressed");
 			startedWalking = false;
 			walking = false;
 			if(!standing)
 			{
 				playingAnimation = false;
-				System.out.println("not standing, gonna stand");
 			}
 		}
 		if(!playingAnimation)
@@ -86,13 +82,11 @@ public class Player extends Entity {
 				{
 					currentSprite = new Sprite("/walkingBoneRight.png", 40, 64, 2, 10);
 					walkingRight = true;
-					System.out.println("right button pressed gonna walk right");
 				}
 				else
 				{
 					currentSprite = new Sprite("/walkingBoneLeft.png", 40, 64, 2, 10);
 					walkingRight = false;
-					System.out.println("right button pressed gonna walk left");
 				}
 			}
 			else if(!startedWalking)
@@ -100,22 +94,19 @@ public class Player extends Entity {
 				walking = false;
 				standing = true;
 				currentSprite = new Sprite("/bone.png", 40, 64, 2, 40);
-				System.out.println("no button pressed gonna stand");
 			}
 			playingAnimation = true;
 		}
-
-		if(walking && rightBtn && !walkingRight)
-		{
-			currentSprite = new Sprite("/walkingBoneRight.png", 40, 64, 2, 10);
-			System.out.println("walking the wrong way, switch to right");
+		else{
+			if(walking && rightBtn && !walkingRight)
+			{
+				currentSprite = new Sprite("/walkingBoneRight.png", 40, 64, 2, 10);
+			}
+			else if(walking && !rightBtn && walkingRight)
+			{
+				currentSprite = new Sprite("/walkingBoneLeft.png", 40, 64, 2, 10);
+			}
 		}
-		else if(walking && !rightBtn && walkingRight)
-		{
-			currentSprite = new Sprite("/walkingBoneLeft.png", 40, 64, 2, 10);
-			System.out.println("walking the wrong way, switch to left");
-		}
-		
 		velocity.x = xMotion * WALK_SPEED;
 		
 		if (onGround && inputState.isButtonDown(Buttons.Jump) && prevInputState.isButtonUp(Buttons.Jump)) {
