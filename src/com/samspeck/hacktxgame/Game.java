@@ -2,6 +2,7 @@ package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -146,6 +147,7 @@ public class Game extends BaseGame {
 
 	public static void main(String[] args) {
 		String url;
+		createLevelsFolder();
 		if (!DEBUG) {
 			JSOUP soup = new JSOUP();
 			url = soup.promptUser();
@@ -165,6 +167,12 @@ public class Game extends BaseGame {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		game.start();
+	}
+
+	private static void createLevelsFolder() {
+		  File dir = new File("levels");
+		  if (!dir.exists()) 
+		    dir.mkdir();  
 	}
 
 	public void addNotify() {
