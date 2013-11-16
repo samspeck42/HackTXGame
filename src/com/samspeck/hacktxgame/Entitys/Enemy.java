@@ -38,7 +38,9 @@ public abstract class Enemy extends Entity {
 		// being hit by the player's ability
 		// invincible
 		// Suicide attack
-	public abstract void die();
+	public void die(){
+		System.out.println("et you, brutus?");
+	}
 	
 	// dodge player's attack
 		// instantly move one direction when player approach from above
