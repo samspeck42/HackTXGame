@@ -16,9 +16,9 @@ public class Zeta extends Alpha {
 	public void makeMove() {
 		
 		if(player.position.x > position.x)
-			velocity.x = -1.75f*walk_speed;
+			velocity.x = -1.70f*walk_speed;
 		else
-			velocity.x = 1.75f*walk_speed;
+			velocity.x = 1.70f*walk_speed;
 
 	}
 

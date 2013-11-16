@@ -19,7 +19,7 @@ public class Entity {
 	
 	public Sprite currentSprite;
 	public boolean onGround = false;
-	public boolean stuckAtWall = false;
+	protected boolean stuckAtWall = false;
 	
 	Game game;
 	
