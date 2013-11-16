@@ -71,11 +71,11 @@ public class Visitor implements NodeVisitor {
 	}
 
 	private void addSpikes(){
-		for(int index = matrix.size() -1; index > 0; index--){
-			ArrayList<Integer> row = matrix.get(index);
-			for(int col = 1; col<row.size()-1; col++){
-				if(row.get(col) == 0 && row.get(col-1) > 0 && row.get(col+1) > 0){// && matrix.get(index-1).get(col) > 0){
-					row.set(col,-1);
+		for(int r = matrix.size() -1; r > 0; r--){
+			ArrayList<Integer> row = matrix.get(r);
+			for(int c = 1; c<row.size()-1; c++){
+				if(row.get(c) == 0 && row.get(c-1) > 0 && row.get(c+1) > 0 && matrix.get(r+1).get(c) > 0){
+					row.set(c,-1);
 				}
 			}
 		}
@@ -87,6 +87,7 @@ public class Visitor implements NodeVisitor {
 			padMatrix();
 			transposeMatrix();
 			addSpikes();
+			addPits();
 			
 			PrintWriter outFile = new PrintWriter("./levels/" + url.hashCode()
 					+ ".level");
@@ -119,6 +120,11 @@ public class Visitor implements NodeVisitor {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void addPits() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
