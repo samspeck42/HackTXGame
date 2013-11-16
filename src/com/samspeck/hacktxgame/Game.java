@@ -37,6 +37,7 @@ public class Game extends BaseGame {
 
 		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
 				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
+		camera.clampToArea(level.width - SCREEN_WIDTH, level.height - SCREEN_WIDTH);
 	}
 
 	@Override

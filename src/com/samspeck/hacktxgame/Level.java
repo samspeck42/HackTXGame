@@ -19,6 +19,9 @@ public class Level {
 	public static final int TILE_IMPASSABLE = 1;
 	public static final int TILE_OBSTACLE = 2;
 	
+	public int width;
+	public int height;
+	
 	int[][] tileMap;
 	ArrayList<Image> tileImages;
 	ArrayList<Integer> tileCollisions;
@@ -37,9 +40,14 @@ public class Level {
 					tileMap[r][c] = levelData.get(r).get(c);
 				}
 			}
+			
+			width = tileMap[0].length * TILE_WIDTH;
+			height = tileMap.length * TILE_HEIGHT;
 		}
 		else {
 			tileMap = new int[0][0];
+			width = 0;
+			height = 0;
 		}
 	}
 
