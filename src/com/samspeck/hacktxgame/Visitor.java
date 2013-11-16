@@ -59,6 +59,7 @@ public class Visitor implements NodeVisitor {
 			padMatrix();
 			outFile.println("URL: "+url);
 			outFile.println("/tiles/block.png");
+			outFile.println("/tiles/spike.png");
 			outFile.println();
 			outFile.println("[Layout]");
 			for (int col = maxSize - 1; col >= 0; col--) {

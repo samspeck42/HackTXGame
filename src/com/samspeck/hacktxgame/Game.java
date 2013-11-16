@@ -19,25 +19,10 @@ public class Game extends BaseGame {
 	Player player;
 	public Level level;
 
-<<<<<<< HEAD
-	public Game() {
+	public Game(String file) {
 		player = new Player(this);
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
-=======
-	public Game(String file) {
-		circle = new Entity();
-		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
-		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
->>>>>>> refs/remotes/origin/master
-		// circle.acceleration.y = 0.01f;
-<<<<<<< HEAD
-		level = new Level("/test.level");
-=======
 		level = new Level("./levels/" + file + ".level");
-		input = new Input(this);
-		inputState = input.getState();
-		prevInputState = inputState;
->>>>>>> refs/remotes/origin/master
 	}
 
 	@Override
