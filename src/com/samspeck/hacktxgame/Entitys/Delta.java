@@ -36,7 +36,7 @@ public class Delta extends Alpha {
 		if(count == 75)
 		{
 			// jump
-			velocity.y = 1.4f*jump_velocity;
+			velocity.y = 1.35f*jump_velocity;
 		}
 		count = (count > 0 )? count-1 : count;
 		

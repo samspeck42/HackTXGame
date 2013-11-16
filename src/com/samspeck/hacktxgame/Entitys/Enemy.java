@@ -8,6 +8,7 @@ public abstract class Enemy extends Entity {
 	public static final float gravitationalAcceleration = .5f;
 	protected float walk_speed = -1;
 	protected int jump_velocity = -10;
+	protected boolean dirRight = false; 
 	
 	public Enemy(Game game) {
 		super(game);
