@@ -1,6 +1,8 @@
 package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import com.samspeck.hacktxgame.Entitys.*;
 
@@ -17,14 +19,15 @@ public class Game extends BaseGame {
 
 	Camera camera = new Camera();
 	public Player player;
-	public Enemy enemy;
+	public ArrayList<Enemy> enemies;
 	public Level level;
 
 	public Game(String file) {
 		player = new Player(this);
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
-		enemy = new Alpha(this);
-		enemy.position = new Vector2D(SCREEN_WIDTH / 2+300, 0);
+		enemies = new ArrayList<Enemy>();
+		enemies.add(new Alpha(this));
+		enemies.get(0).position = new Vector2D(SCREEN_WIDTH / 2+300, 0);
 		level = new Level("./levels/" + file + ".level");
 	}
 
@@ -37,7 +40,7 @@ public class Game extends BaseGame {
 	@Override
 	public void update() {
 		player.update();
-		enemy.update();
+		enemies.get(0).update();
 		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
 				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
 //		camera.clampToArea(level.width - SCREEN_WIDTH, level.height - SCREEN_WIDTH);
@@ -48,7 +51,7 @@ public class Game extends BaseGame {
 		// TODO Auto-generated method stub
 		level.render(g, this, camera);
 		player.render(g, this, camera);
-		enemy.render(g, this, camera);
+		enemies.get(0).render(g, this, camera);
 	}
 
 	public static void main(String[] args) {
