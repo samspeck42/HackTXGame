@@ -11,10 +11,13 @@ public class Sprite {
 	
 	private Image sprite;
 	
-	private int frameWidth;
-	private int frameHeight;
-	private int numFrames;
-	private int delay;
+	public final int frameWidth;
+	public final int frameHeight;
+	public final int numFrames;
+	public final int delay;
+	
+	private int currentFrame = 0;
+	private int currentDelay = 0;
 	
 	public Sprite(String imagePath, int frameWidth, int frameHeight, int numFrames, int delay) {
 		ImageIcon i = new ImageIcon(Game.class.getResource(imagePath));
