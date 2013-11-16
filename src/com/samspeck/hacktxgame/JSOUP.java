@@ -19,6 +19,7 @@ public class JSOUP {
 		JPanel panel = new JPanel();
 		JOptionPane.showMessageDialog(panel, "Could not access " + url,
 				"Error", JOptionPane.ERROR_MESSAGE);
+		System.exit(0);
 		return null;
 	}
 
