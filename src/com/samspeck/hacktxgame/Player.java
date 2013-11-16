@@ -1,6 +1,7 @@
 package com.samspeck.hacktxgame;
 
 import com.samspeck.hacktxgame.Entitys.Enemy;
+import com.samspeck.hacktxgame.Entitys.Spiky;
 
 public class Player extends Entity {
 	
@@ -46,8 +47,9 @@ public class Player extends Entity {
 	}
 
 	public void reactToEnemyCollision(Enemy enemy) {
-		System.out.println("ouch");
-		game.gameover();
-		
+		//if(!(enemy instanceof Spiky) && position.y > enemy.position.y)
+		//		enemy.die();
+		//else
+			game.gameover();
 	}
 }

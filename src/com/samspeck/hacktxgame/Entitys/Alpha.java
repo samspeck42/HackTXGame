@@ -11,21 +11,13 @@ public class Alpha extends Enemy {
 	@Override
 	public void makeMove() {;
 		velocity.x = walk_speed;
-		if(false/*ran into concrete*/)
+		if(false)
 			velocity.x = -walk_speed;
 	}
 
 	@Override
 	public void attack() {
 		// Alpha doesn't attack
-	}
-
-	@Override
-	public void die() {
-		// TODO if human stepped on Alpha
-		// Alpha die and get removed from the map
-		// if Alpha fell off of the cliff
-		// Alpha die
 	}
 
 }
