@@ -16,7 +16,7 @@ public class Game extends BaseGame {
 	public static final int SCREEN_HEIGHT = SCREEN_WIDTH * 2 / 3;
 
 	Camera camera = new Camera();
-	Player player;
+	public Player player;
 	public Level level;
 
 	public Game(String file) {

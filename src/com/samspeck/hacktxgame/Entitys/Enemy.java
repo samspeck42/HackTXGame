@@ -1,15 +1,14 @@
 package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Entity;
+import com.samspeck.hacktxgame.Game;
 
 public abstract class Enemy extends Entity {
 
-	public Entity human;
-	
-	public Enemy(Entity human)
-	{
-		this.human = human;
+	public Enemy(Game game) {
+		super(game);
 	}
+
 	// movement pattern
 		//left right turn around on obstacle (air or land)
 		//up down turn around on obstacle (air or land)

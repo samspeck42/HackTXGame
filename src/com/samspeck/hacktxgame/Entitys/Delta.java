@@ -1,13 +1,14 @@
 package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Entity;
+import com.samspeck.hacktxgame.Game;
 
 public class Delta extends Alpha {
 	private int count = 0;
 	public final int JUMPING_SPEED = -14;
 	
-	public Delta(Entity human) {
-		super(human);
+	public Delta(Game game) {
+		super(game);
 	}
 
 	@Override

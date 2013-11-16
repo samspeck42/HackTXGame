@@ -1,14 +1,16 @@
 package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Entity;
+import com.samspeck.hacktxgame.Game;
 
 public class Gamma extends Alpha {
-	public Gamma(Entity human) {
-		super(human);
-		// TODO Auto-generated constructor stub
-	}
 	public final int JUMPING_SPEED = -10;
 	private int count = 0;
+	
+	public Gamma(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public void makeMove() {
 		super.makeMove();
