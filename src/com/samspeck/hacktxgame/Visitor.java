@@ -10,6 +10,8 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeVisitor;
 
 public class Visitor implements NodeVisitor {
+	private static final int SKYBOX = 10;
+	private static final int SPIKE = -1;
 	ArrayList<ArrayList<Integer>> matrix;
 	HashMap<String, Integer> countTags;
 	int value;
@@ -48,35 +50,64 @@ public class Visitor implements NodeVisitor {
 	}
 
 	// level generation rules
-	// lowest level is spikes
-	
-//	TODO add sky
-
+	// jaggies get interleaved with spikes
+	// >5 on same level add pits
 	private void padMatrix() {
 		for (ArrayList<Integer> row : matrix)
 			for (int pad = maxSize - row.size(); pad > 0; pad--)
 				row.add(0);
 	}
-	
-//	private void transposeMatrix(){
-//		ArrayList<ArrayList<Integer>> transpose 
-//	}
+
+	private void transposeMatrix() {
+		ArrayList<ArrayList<Integer>> transpose = new ArrayList<ArrayList<Integer>>();
+		for (int col = maxSize - 1; col >= 0; col--) {
+			ArrayList<Integer> transposeRow = new ArrayList<Integer>();
+			for (int row = 0; row < matrix.size(); row++) {
+				transposeRow.add(matrix.get(row).get(col));
+			}
+			transpose.add(transposeRow);
+		}
+		matrix = transpose;
+	}
+
+	private void addSpikes(){
+		for(int index = matrix.size() -1; index > 0; index--){
+			ArrayList<Integer> row = matrix.get(index);
+			for(int col = 1; col<row.size()-1; col++){
+				if(row.get(col) == 0 && row.get(col-1) > 0 && row.get(col+1) > 0){// && matrix.get(index-1).get(col) > 0){
+					row.set(col,-1);
+				}
+			}
+		}
+			
+	}
 
 	public void writeLevel(String url) {
 		try {
+			padMatrix();
+			transposeMatrix();
+			addSpikes();
+			
 			PrintWriter outFile = new PrintWriter("./levels/" + url.hashCode()
 					+ ".level");
-			padMatrix();
 			outFile.println("URL: " + url);
 			outFile.println("/tiles/block.png " + Level.TILE_IMPASSABLE);
 			outFile.println("/tiles/spike.png " + Level.TILE_OBSTACLE);
 			outFile.println();
 			outFile.println("[Layout]");
-			for (int col = maxSize - 1; col >= 0; col--) {
-				for (int row = 0; row < matrix.size(); row++) {
-					// getting the transpose
-					if (matrix.get(row).get(col) != 0)
+//			printing skybox
+			StringBuilder sky = new StringBuilder();
+			for(int x = 0; x < matrix.get(0).size();x ++)
+				sky.append("0 ");
+			for(int x = 0; x < SKYBOX; x++)
+				outFile.println(sky);
+			
+			for (int row = 0; row < matrix.size(); row++) {
+				for (int col = 0; col < matrix.get(0).size(); col++) {
+					if (matrix.get(row).get(col) > 0)
 						outFile.print("1 ");
+					else if(matrix.get(row).get(col) == -1)
+						outFile.print("2 ");
 					else
 						outFile.print("0 ");
 				}
