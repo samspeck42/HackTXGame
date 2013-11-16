@@ -1,6 +1,5 @@
 package com.samspeck.hacktxgame.Entitys;
 
-import com.samspeck.hacktxgame.Entity;
 import com.samspeck.hacktxgame.Game;
 import com.samspeck.hacktxgame.Player;
 
@@ -16,9 +15,9 @@ public class Zeta extends Alpha {
 	public void makeMove() {
 		
 		if(player.position.x > position.x)
-			velocity.x = -1.5f*movement_speed;
+			velocity.x = -1.5f*walk_speed;
 		else
-			velocity.x = 1.5f*movement_speed;
+			velocity.x = 1.5f*walk_speed;
 
 	}
 

@@ -1,10 +1,8 @@
 package com.samspeck.hacktxgame.Entitys;
 
-import com.samspeck.hacktxgame.Entity;
 import com.samspeck.hacktxgame.Game;
 
 public class Gamma extends Alpha {
-	public final int JUMPING_SPEED = -10;
 	private int count = 0;
 	
 	public Gamma(Game game) {
@@ -22,7 +20,7 @@ public class Gamma extends Alpha {
 		{
 			count = 0;
 			// jump
-			velocity.y = JUMPING_SPEED;
+			velocity.y = jump_velocity;
 		}
 		
 	}
