@@ -2,7 +2,6 @@ package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +15,7 @@ import com.samspeck.hacktxgame.Entitys.Delta;
 import com.samspeck.hacktxgame.Entitys.Enemy;
 import com.samspeck.hacktxgame.Entitys.Epsilon;
 import com.samspeck.hacktxgame.Entitys.Gamma;
+import com.samspeck.hacktxgame.Entitys.Goal;
 import com.samspeck.hacktxgame.Entitys.Zeta;
 
 public class Game extends BaseGame {
@@ -35,6 +35,7 @@ public class Game extends BaseGame {
 	Camera camera = new Camera();
 	public Player player;
 	public ArrayList<Enemy> enemies;
+	public Goal goal;
 	public Level level;
 	public int footsteps;
 
@@ -43,14 +44,24 @@ public class Game extends BaseGame {
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		enemies = new ArrayList<Enemy>();
 		level = new Level("./levels/" + file + ".level");
+		goal = new Goal(this);
+		int goal_height = 0;
+		for(int i = level.tileMap.length-1; i >= 0 ; i--)
+		{
+			if(level.tileMap[i][level.tileMap[0].length-1] == -1)
+			{
+				goal_height = i * Level.TILE_HEIGHT;
+				break;
+			}
+		}
+		goal.position = new Vector2D(level.width - Level.TILE_WIDTH, goal_height);
+		enemies.add(goal);
 		spawnEnemy();
 	}
 
 	public void spawnEnemy() {
 		footsteps = 0;
-		System.out.println("location" + player.position.x);
 		int currentLocation = (int) (player.position.x + 500);
-		System.out.println("location" + currentLocation);
 		Enemy nextEnemy;
 		switch (rand.nextInt(NUM_ENEMY_TYPES)) {
 		case 0:
@@ -92,10 +103,9 @@ public class Game extends BaseGame {
 
 	@Override
 	public void update() {
-		if (footsteps > 500)
+		if (footsteps > 300)
 			spawnEnemy();
 		player.update();
-
 		for (Enemy enemy : enemies)
 			enemy.update();
 
@@ -115,6 +125,7 @@ public class Game extends BaseGame {
 				player.reactToEnemyCollision(enemy);
 			}
 		}
+		
 
 		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
 				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -164,6 +175,14 @@ public class Game extends BaseGame {
 		JPanel panel = new JPanel();
 		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n"
 				+ "click OK to restart", "GAMEOVER",
+				JOptionPane.INFORMATION_MESSAGE);
+		main(null);
+	}
+
+	public void win() {
+		JPanel panel = new JPanel();
+		JOptionPane.showMessageDialog(panel, "YOU WON!\n"
+				+ "click OK to restart", "YISSSS",
 				JOptionPane.INFORMATION_MESSAGE);
 		main(null);
 	}
