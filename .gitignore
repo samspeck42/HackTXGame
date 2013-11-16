@@ -21,4 +21,4 @@ proguard/
 .idea/
 #settings
 .settings*
-.level
+*.level
