@@ -44,7 +44,8 @@ public class Player extends Entity {
 	}
 
 	public void reactToEnemyCollision() {
-		// TODO implement
+		System.out.println("ouch");
+		game.gameover();
 		
 	}
 }
