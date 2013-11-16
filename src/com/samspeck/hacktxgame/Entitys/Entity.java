@@ -19,6 +19,7 @@ public class Entity {
 	
 	public Sprite currentSprite;
 	public boolean onGround = false;
+	public boolean stuckAtWall = false;
 	
 	Game game;
 	
@@ -79,12 +80,15 @@ public class Entity {
                         velocity.x = 0f;
                         acceleration.x = 0f;
                         collided = true;
+                        stuckAtWall = true;
                         break;
                     }
                 }
 
                 if (collided)
+                {
                     break;
+                }
             }
         }
         position.x += velocity.x;

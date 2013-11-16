@@ -104,7 +104,7 @@ public class Game extends BaseGame {
 
 	@Override
 	public void update() {
-		if (footsteps > 300)
+		if (footsteps > 250+rand.nextInt(100))
 			spawnEnemy();
 		player.update();
 		for (Enemy enemy : enemies)
