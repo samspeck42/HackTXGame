@@ -11,7 +11,7 @@ public class Game extends BaseGame {
 	 */
 	private static final long serialVersionUID = 938348731821944192L;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = SCREEN_WIDTH * 2 / 3;
 
@@ -19,11 +19,25 @@ public class Game extends BaseGame {
 	Player player;
 	public Level level;
 
+<<<<<<< HEAD
 	public Game() {
 		player = new Player(this);
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
+=======
+	public Game(String file) {
+		circle = new Entity();
+		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
+		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
+>>>>>>> refs/remotes/origin/master
 		// circle.acceleration.y = 0.01f;
+<<<<<<< HEAD
 		level = new Level("/test.level");
+=======
+		level = new Level("./levels/" + file + ".level");
+		input = new Input(this);
+		inputState = input.getState();
+		prevInputState = inputState;
+>>>>>>> refs/remotes/origin/master
 	}
 
 	@Override
@@ -48,11 +62,18 @@ public class Game extends BaseGame {
 	}
 
 	public static void main(String[] args) {
+		String url;
 		if (!DEBUG) {
 			JSOUP soup = new JSOUP();
-			soup.promptUser();
+			url = soup.promptUser();
+			if(url == null)
+				return;
+			url = ""+url.hashCode();
 		}
-		Game game = new Game();
+		else{
+			url = "test.level";
+		}
+		Game game = new Game(url);
 		JFrame frame = new JFrame();
 		frame.add(game);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

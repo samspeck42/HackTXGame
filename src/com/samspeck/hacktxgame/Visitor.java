@@ -55,8 +55,9 @@ public class Visitor implements NodeVisitor {
 
 	public void writeLevel(String url) {
 		try {
-			PrintWriter outFile = new PrintWriter("./res/test");
+			PrintWriter outFile = new PrintWriter("./levels/"+url.hashCode()+".level");
 			padMatrix();
+			outFile.println("URL: "+url);
 			outFile.println("/tiles/block.png");
 			outFile.println();
 			outFile.println("[Layout]");

@@ -1,5 +1,7 @@
 package com.samspeck.hacktxgame.Entitys;
 
+import com.samspeck.hacktxgame.Entity;
+
 public class Alpha extends Enemy {
 	public static final int MOVEMENT_SPEED = 10;
 	
