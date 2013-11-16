@@ -5,4 +5,5 @@ public enum Buttons {
 	Down,
 	Left,
 	Right,
+	Jump,
 }

@@ -15,11 +15,17 @@ public class Level {
 	static final int TILE_WIDTH = 32;
 	static final int TILE_HEIGHT = 32;
 	
+	public static final int TILE_PASSABLE = 0;
+	public static final int TILE_IMPASSABLE = 1;
+	public static final int TILE_OBSTACLE = 2;
+	
 	int[][] tileMap;
 	ArrayList<Image> tileImages;
+	ArrayList<Integer> tileCollisions;
 	
 	public Level(String levelPath) {
 		tileImages = new ArrayList<Image>();
+		tileCollisions = new ArrayList<Integer>();
 		
 		ArrayList<ArrayList<Integer>> levelData = loadLevel(levelPath);
 		
@@ -57,9 +63,12 @@ public class Level {
 				}
 				
 				if (!readingLayout) {
-					ImageIcon i = new ImageIcon(Game.class.getResource(line));
+					String[] row = line.split(" ");
+					ImageIcon i = new ImageIcon(Game.class.getResource(row[0]));
 					Image im = i.getImage();
 					tileImages.add(im);
+					
+					tileCollisions.add(Integer.parseInt(row[1]));
 				}
 				else if (readingLayout) {
 					String[] row = line.split(" ");
@@ -80,6 +89,19 @@ public class Level {
 			e.printStackTrace();
 		}
 		return levelData;
+	}
+
+	public int getCollisionAtCell(Point cell) {
+		if (cell.x < 0 || cell.x >= tileMap[0].length ||
+				cell.y < 0 || cell.y >= tileMap.length)
+			return TILE_PASSABLE;
+		
+		int index = tileMap[cell.y][cell.x];
+		
+		if (index < 0)
+			return TILE_PASSABLE;
+		else
+			return tileCollisions.get(index);
 	}
 	
 	public void render(Graphics g, ImageObserver obs, Camera cam) {

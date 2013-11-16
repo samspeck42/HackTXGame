@@ -16,21 +16,14 @@ public class Game extends BaseGame {
 	public static final int SCREEN_HEIGHT = SCREEN_WIDTH * 2 / 3;
 
 	Camera camera = new Camera();
-	Entity circle;
-	Level level;
-	Input input;
-	InputState inputState;
-	InputState prevInputState;
+	Player player;
+	public Level level;
 
 	public Game() {
-		circle = new Entity();
-		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
-		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
+		player = new Player(this);
+		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		// circle.acceleration.y = 0.01f;
-		level = new Level("/test");
-		input = new Input(this);
-		inputState = input.getState();
-		prevInputState = inputState;
+		level = new Level("/test.level");
 	}
 
 	@Override
@@ -41,34 +34,17 @@ public class Game extends BaseGame {
 
 	@Override
 	public void update() {
-		inputState = input.getState();
+		player.update();
 
-		Vector2D motion = new Vector2D(0, 0);
-		if (inputState.isButtonDown(Buttons.Up))
-			motion.y--;
-		if (inputState.isButtonDown(Buttons.Down))
-			motion.y++;
-		if (inputState.isButtonDown(Buttons.Left))
-			motion.x--;
-		if (inputState.isButtonDown(Buttons.Right))
-			motion.x++;
-
-		circle.velocity.x = motion.x * 5;
-		circle.velocity.y = motion.y * 5;
-
-		circle.update();
-
-		camera.lockToTarget(circle.position, circle.currentSprite.frameWidth,
-				circle.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		prevInputState = inputState;
+		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
+				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		level.render(g, this, camera);
-		circle.render(g, this, camera);
+		player.render(g, this, camera);
 	}
 
 	public static void main(String[] args) {

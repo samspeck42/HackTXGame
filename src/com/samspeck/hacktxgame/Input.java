@@ -18,6 +18,7 @@ public class Input implements KeyListener {
 		buttonMap.put(KeyEvent.VK_DOWN, Buttons.Down);
 		buttonMap.put(KeyEvent.VK_LEFT, Buttons.Left);
 		buttonMap.put(KeyEvent.VK_RIGHT, Buttons.Right);
+		buttonMap.put(KeyEvent.VK_CONTROL, Buttons.Jump);
 		
 		inputState = new InputState();
 	}
