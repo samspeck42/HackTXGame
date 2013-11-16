@@ -58,8 +58,11 @@ public class Visitor implements NodeVisitor {
 
 	public void writeLevel(String url) {
 		try {
-			PrintWriter outFile = new PrintWriter("test.txt");
+			PrintWriter outFile = new PrintWriter("test");
 			padMatrix();
+			outFile.println("/tiles/block.png");
+			outFile.println();
+			outFile.println("[Layout]");
 			for (int col = maxSize - 1; col >= 0; col--) {
 				for (int row = 0; row < matrix.size(); row++) {
 					// getting the transpose
