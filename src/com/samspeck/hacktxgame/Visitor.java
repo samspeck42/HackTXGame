@@ -51,9 +51,6 @@ public class Visitor implements NodeVisitor {
 		for (ArrayList<Integer> row : matrix)
 			for (int pad = maxSize - row.size(); pad > 0; pad--)
 				row.add(0);
-		for (ArrayList<Integer> row : matrix) {
-			System.out.println(row);
-		}
 	}
 
 	public void writeLevel(String url) {
