@@ -33,6 +33,7 @@ public class Game extends BaseGame {
 	public static final Random rand = new Random();
 	public static final int NUM_ENEMY_TYPES = 6;
 
+	boolean gameOver;
 	Camera camera = new Camera();
 	public Player player;
 	public ArrayList<Enemy> enemies;
@@ -41,21 +42,21 @@ public class Game extends BaseGame {
 	public int footsteps;
 
 	public Game(String file) {
+		gameOver = false;
 		player = new Player(this);
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		enemies = new ArrayList<Enemy>();
 		level = new Level("./levels/" + file + ".level");
 		goal = new Goal(this);
 		int goal_height = 0;
-		for(int i = level.tileMap.length-1; i >= 0 ; i--)
-		{
-			if(level.tileMap[i][level.tileMap[0].length-1] == -1)
-			{
+		for (int i = level.tileMap.length - 1; i >= 0; i--) {
+			if (level.tileMap[i][level.tileMap[0].length - 1] == -1) {
 				goal_height = i * Level.TILE_HEIGHT;
 				break;
 			}
 		}
-		goal.position = new Vector2D(level.width - Level.TILE_WIDTH, goal_height);
+		goal.position = new Vector2D(level.width - Level.TILE_WIDTH,
+				goal_height);
 		enemies.add(goal);
 		spawnEnemy();
 	}
@@ -104,7 +105,7 @@ public class Game extends BaseGame {
 
 	@Override
 	public void update() {
-		if (footsteps > 250+rand.nextInt(100))
+		if (footsteps > 250 + rand.nextInt(100))
 			spawnEnemy();
 		player.update();
 		for (Enemy enemy : enemies)
@@ -126,7 +127,6 @@ public class Game extends BaseGame {
 				player.reactToEnemyCollision(enemy);
 			}
 		}
-		
 
 		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
 				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -173,20 +173,31 @@ public class Game extends BaseGame {
 	}
 
 	public void gameover() {
+		if (gameOver)
+			return;
+		gameOver = true;
 		JPanel panel = new JPanel();
 		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n"
 				+ "click OK to restart", "GAMEOVER",
 				JOptionPane.INFORMATION_MESSAGE);
 		frame.setVisible(false);
 		frame.dispose();
+		// dirty dirty code to stop the old game
+		player = null;
 		main(null);
 	}
 
 	public void win() {
+		if (gameOver)
+			return;
+		gameOver = true;
 		JPanel panel = new JPanel();
 		JOptionPane.showMessageDialog(panel, "YOU WON!\n"
-				+ "click OK to restart", "YISSSS",
+				+ "click OK to restart", "Good job!",
 				JOptionPane.INFORMATION_MESSAGE);
+		frame.setVisible(false);
+		frame.dispose();
+		player = null;
 		main(null);
 	}
 

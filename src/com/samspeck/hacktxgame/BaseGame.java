@@ -10,7 +10,7 @@ public abstract class BaseGame extends JPanel implements Runnable {
 	private static final long FRAMERATE = 60;
 	
 	public BaseGame(){
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setDoubleBuffered(true);
 	}
 	

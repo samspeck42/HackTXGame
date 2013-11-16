@@ -15,6 +15,9 @@ public class JSOUP {
 		if (url != null) {
 			if (generateLevel(url))
 				return url;
+		} else {
+			System.exit(0);
+			return null;
 		}
 		JPanel panel = new JPanel();
 		JOptionPane.showMessageDialog(panel, "Could not access " + url,

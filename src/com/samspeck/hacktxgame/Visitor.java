@@ -92,7 +92,7 @@ public class Visitor implements NodeVisitor {
 
 	private void addPits() {
 		// TODO Auto-generated method stub
-
+		// no pits for now
 	}
 
 	public void writeLevel(String url) {
