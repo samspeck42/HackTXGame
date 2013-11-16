@@ -1,10 +1,13 @@
 package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import com.samspeck.hacktxgame.Entitys.*;
+
+import com.samspeck.hacktxgame.Entitys.Alpha;
+import com.samspeck.hacktxgame.Entitys.Enemy;
 
 public class Game extends BaseGame {
 
@@ -40,7 +43,21 @@ public class Game extends BaseGame {
 	@Override
 	public void update() {
 		player.update();
-		enemies.get(0).update();
+		
+		for (Enemy enemy : enemies)
+			enemies.get(0).update();
+		
+		// enemy collision detection
+		Rectangle playerRectangle = new Rectangle((int)Math.round(player.position.x), (int)Math.round(player.position.y),
+				player.currentSprite.frameWidth, player.currentSprite.frameHeight);
+		for (Enemy enemy : enemies) {
+			Rectangle enemyRectangle = new Rectangle((int)Math.round(enemy.position.x), (int)Math.round(enemy.position.y), 
+					enemy.currentSprite.frameWidth, enemy.currentSprite.frameHeight);
+			if (playerRectangle.intersects(enemyRectangle)) {
+				player.reactToEnemyCollision();
+			}
+		}
+		
 		camera.lockToTarget(player.position, player.currentSprite.frameWidth,
 				player.currentSprite.frameHeight, SCREEN_WIDTH, SCREEN_HEIGHT);
 //		camera.clampToArea(level.width - SCREEN_WIDTH, level.height - SCREEN_WIDTH);
