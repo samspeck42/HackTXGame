@@ -1,10 +1,10 @@
-package com.samspeck.hacktxgame.Characters;
+package com.samspeck.hacktxgame.Entitys;
 
 public class Alpha extends Enemy {
 
 	@Override
 	public void makeMove() {
-		// TODO Move Left
+		position.x += velocity.x;
 		// if(ran into concrete)
 		// 	Move Right
 	}

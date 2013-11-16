@@ -1,4 +1,4 @@
-package com.samspeck.hacktxgame.Characters;
+package com.samspeck.hacktxgame.Entitys;
 
 public class Beta extends Alpha {
 

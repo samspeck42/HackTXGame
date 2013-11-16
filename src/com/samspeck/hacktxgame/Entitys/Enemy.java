@@ -1,4 +1,4 @@
-package com.samspeck.hacktxgame.Characters;
+package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Entity;
 
