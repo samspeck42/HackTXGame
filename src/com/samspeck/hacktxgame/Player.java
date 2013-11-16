@@ -16,7 +16,7 @@ public class Player extends Entity {
 		inputState = input.getState();
 		prevInputState = inputState;
 		
-		currentSprite = new Sprite("/bone.png", 40, 80, 2, 40);
+		currentSprite = new Sprite("/bone.png", 40, 64, 2, 40);
 	}
 	
 	@Override
@@ -44,7 +44,8 @@ public class Player extends Entity {
 	}
 
 	public void reactToEnemyCollision() {
-		// TODO implement
+		System.out.println("ouch");
+		game.gameover();
 		
 	}
 }
