@@ -111,15 +111,10 @@ public class Game extends BaseGame {
 
 	public void gameover() {
 		JPanel panel = new JPanel();
-		Object[] options = { "Restart", "Exit"};
-		int n = JOptionPane.showOptionDialog(panel,
-				"Oh noes! you died! ",
-				"GAMEOVER", JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-		if(n == 0)
-			main(null);
-		else
-			System.exit(0);
+		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n" +
+				"click OK to restart", "GAMEOVER",
+				JOptionPane.INFORMATION_MESSAGE);
+		main(null);
 	}
 
 }
