@@ -47,19 +47,29 @@ public class Visitor implements NodeVisitor {
 
 	}
 
-	public void padMatrix() {
+	// level generation rules
+	// lowest level is spikes
+	
+//	TODO add sky
+
+	private void padMatrix() {
 		for (ArrayList<Integer> row : matrix)
 			for (int pad = maxSize - row.size(); pad > 0; pad--)
 				row.add(0);
 	}
-// level generation rules
+	
+//	private void transposeMatrix(){
+//		ArrayList<ArrayList<Integer>> transpose 
+//	}
+
 	public void writeLevel(String url) {
 		try {
-			PrintWriter outFile = new PrintWriter("./levels/"+url.hashCode()+".level");
+			PrintWriter outFile = new PrintWriter("./levels/" + url.hashCode()
+					+ ".level");
 			padMatrix();
-			outFile.println("URL: "+url);
-			outFile.println("/tiles/block.png "+Level.TILE_IMPASSABLE);
-			outFile.println("/tiles/spike.png "+Level.TILE_OBSTACLE);
+			outFile.println("URL: " + url);
+			outFile.println("/tiles/block.png " + Level.TILE_IMPASSABLE);
+			outFile.println("/tiles/spike.png " + Level.TILE_OBSTACLE);
 			outFile.println();
 			outFile.println("[Layout]");
 			for (int col = maxSize - 1; col >= 0; col--) {
