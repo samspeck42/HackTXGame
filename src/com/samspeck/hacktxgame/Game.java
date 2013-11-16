@@ -16,6 +16,7 @@ import com.samspeck.hacktxgame.Entitys.Enemy;
 import com.samspeck.hacktxgame.Entitys.Epsilon;
 import com.samspeck.hacktxgame.Entitys.Gamma;
 import com.samspeck.hacktxgame.Entitys.Goal;
+import com.samspeck.hacktxgame.Entitys.Player;
 import com.samspeck.hacktxgame.Entitys.Zeta;
 
 public class Game extends BaseGame {

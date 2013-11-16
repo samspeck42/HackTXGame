@@ -1,7 +1,6 @@
 package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Game;
-import com.samspeck.hacktxgame.Player;
 
 public class Zeta extends Alpha {
 	private Player player;

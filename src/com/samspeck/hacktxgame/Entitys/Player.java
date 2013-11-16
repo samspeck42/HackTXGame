@@ -1,9 +1,13 @@
-package com.samspeck.hacktxgame;
+package com.samspeck.hacktxgame.Entitys;
 
 import java.awt.Point;
 
-import com.samspeck.hacktxgame.Entitys.Enemy;
-import com.samspeck.hacktxgame.Entitys.Goal;
+import com.samspeck.hacktxgame.Buttons;
+import com.samspeck.hacktxgame.Game;
+import com.samspeck.hacktxgame.Input;
+import com.samspeck.hacktxgame.InputState;
+import com.samspeck.hacktxgame.Level;
+import com.samspeck.hacktxgame.Sprite;
 
 public class Player extends Entity {
 	

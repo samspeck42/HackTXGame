@@ -1,6 +1,5 @@
 package com.samspeck.hacktxgame.Entitys;
 
-import com.samspeck.hacktxgame.Entity;
 import com.samspeck.hacktxgame.Game;
 import com.samspeck.hacktxgame.Sprite;
 
