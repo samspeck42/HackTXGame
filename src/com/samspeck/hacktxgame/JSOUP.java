@@ -6,11 +6,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class JSOUP {
-	public static void main(String[] args){
-		promptUser();
-	}
 	
-	public static void promptUser(){
+	public void promptUser(){
 		String url;
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Please input a url to generate a level: ");
@@ -23,7 +20,7 @@ public class JSOUP {
 		}
 	}
 
-	private static boolean generateLevel(String url) {
+	private boolean generateLevel(String url) {
 		try {
 			Document doc = Jsoup.connect(url).get();
 			Visitor visitor = new Visitor();
