@@ -2,14 +2,21 @@ package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.samspeck.hacktxgame.Entitys.Alpha;
+import com.samspeck.hacktxgame.Entitys.Beta;
+import com.samspeck.hacktxgame.Entitys.Delta;
 import com.samspeck.hacktxgame.Entitys.Enemy;
+import com.samspeck.hacktxgame.Entitys.Epsilon;
+import com.samspeck.hacktxgame.Entitys.Gamma;
+import com.samspeck.hacktxgame.Entitys.Zeta;
 
 public class Game extends BaseGame {
 
@@ -22,19 +29,59 @@ public class Game extends BaseGame {
 	public static final boolean DEBUG = false;
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = SCREEN_WIDTH * 2 / 3;
+	public static final Random rand = new Random();
+	public static final int NUM_ENEMY_TYPES = 6;
 
 	Camera camera = new Camera();
 	public Player player;
 	public ArrayList<Enemy> enemies;
 	public Level level;
+	public int footsteps;
 
 	public Game(String file) {
 		player = new Player(this);
 		player.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		enemies = new ArrayList<Enemy>();
-		enemies.add(new Alpha(this));
-		enemies.get(0).position = new Vector2D(SCREEN_WIDTH / 2 + 300, 0);
 		level = new Level("./levels/" + file + ".level");
+		spawnEnemy();
+	}
+
+	public void spawnEnemy() {
+		footsteps = 0;
+		System.out.println("location" + player.position.x);
+		int currentLocation = (int) (player.position.x + 500);
+		System.out.println("location" + currentLocation);
+		Enemy nextEnemy;
+		switch (rand.nextInt(NUM_ENEMY_TYPES)) {
+		case 0:
+			nextEnemy = new Alpha(this);
+			System.out.println("added alpha");
+			break;
+		case 1:
+			nextEnemy = new Beta(this);
+			System.out.println("added beta");
+			break;
+		case 2:
+			nextEnemy = new Delta(this);
+			System.out.println("added delta");
+			break;
+		case 3:
+			nextEnemy = new Epsilon(this);
+			System.out.println("added epsilon");
+			break;
+		case 4:
+			nextEnemy = new Gamma(this);
+			System.out.println("added gamma");
+			break;
+		case 5:
+			nextEnemy = new Zeta(this);
+			break;
+		default:
+			nextEnemy = new Alpha(this);
+			break;
+		}
+		nextEnemy.position = new Vector2D(currentLocation, 0);
+		enemies.add(nextEnemy);
 	}
 
 	@Override
@@ -45,10 +92,12 @@ public class Game extends BaseGame {
 
 	@Override
 	public void update() {
+		if (footsteps > 500)
+			spawnEnemy();
 		player.update();
 
 		for (Enemy enemy : enemies)
-			enemies.get(0).update();
+			enemy.update();
 
 		// enemy collision detection
 		Rectangle playerRectangle = new Rectangle(
@@ -78,7 +127,9 @@ public class Game extends BaseGame {
 		// TODO Auto-generated method stub
 		level.render(g, this, camera);
 		player.render(g, this, camera);
-		enemies.get(0).render(g, this, camera);
+		for (Enemy enemy : enemies) {
+			enemy.render(g, this, camera);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -111,8 +162,8 @@ public class Game extends BaseGame {
 
 	public void gameover() {
 		JPanel panel = new JPanel();
-		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n" +
-				"click OK to restart", "GAMEOVER",
+		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n"
+				+ "click OK to restart", "GAMEOVER",
 				JOptionPane.INFORMATION_MESSAGE);
 		main(null);
 	}
