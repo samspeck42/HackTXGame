@@ -82,13 +82,14 @@ public class Level {
 		return levelData;
 	}
 	
-	public void render(Graphics g, ImageObserver obs) {
+	public void render(Graphics g, ImageObserver obs, Camera cam) {
 		for (int r = 0; r < tileMap.length; r++) {
 			for (int c = 0; c < tileMap[r].length; c++) {
 				int index = tileMap[r][c];
 				
 				if (index > -1) {
-					Point pos = new Point(c * TILE_WIDTH, r * TILE_HEIGHT);
+					Point pos = new Point((int)Math.round((c * TILE_WIDTH) - cam.position.x), 
+							(int)Math.round((r * TILE_HEIGHT) - cam.position.y));
 					
 					g.drawImage(tileImages.get(index), pos.x, pos.y, TILE_WIDTH, TILE_HEIGHT, obs);
 				}
