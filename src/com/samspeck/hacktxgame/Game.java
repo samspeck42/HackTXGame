@@ -165,6 +165,8 @@ public class Game extends BaseGame {
 		JOptionPane.showMessageDialog(panel, "Oh noes! you died!\n"
 				+ "click OK to restart", "GAMEOVER",
 				JOptionPane.INFORMATION_MESSAGE);
+		frame.setVisible(false);
+		frame.dispose();
 		main(null);
 	}
 

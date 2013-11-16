@@ -12,7 +12,7 @@ import org.jsoup.select.NodeVisitor;
 public class Visitor implements NodeVisitor {
 	static final int SKYBOX = 10;
 	private static final int SPIKE = -1;
-	
+
 	ArrayList<ArrayList<Integer>> matrix;
 	HashMap<String, Integer> countTags;
 	ArrayList<Element> links;
@@ -41,9 +41,9 @@ public class Visitor implements NodeVisitor {
 		for (int x = 0; x < depth; x++)
 			row.add(countTags.get(elem.tagName()));
 
-		if(elem.tagName()=="a")
+		if (elem.tagName() == "a")
 			links.add(elem);
-		
+
 		if (maxSize < row.size())
 			maxSize = row.size();
 		if (row.size() > 0)
@@ -76,28 +76,32 @@ public class Visitor implements NodeVisitor {
 		matrix = transpose;
 	}
 
-	private void addSpikes(){
-		for(int r = matrix.size() -1; r > 0; r--){
+	// add turns 0's into spikes if they're in this configuration
+	// X 0 X
+	// --X
+	private void addSpikes() {
+		for (int r = matrix.size() - 1; r > 0; r--) {
 			ArrayList<Integer> row = matrix.get(r);
-			for(int c = 1; c<row.size()-1; c++){
-				if(row.get(c) == 0 && row.get(c-1) > 0 && row.get(c+1) > 0 && matrix.get(r+1).get(c) > 0){
-					row.set(c,SPIKE);
-				}
+			for (int c = 1; c < row.size() - 1; c++) {
+				if (row.get(c) == 0 && row.get(c - 1) > 0 && row.get(c + 1) > 0
+						&& matrix.get(r + 1).get(c) > 0)
+					row.set(c, SPIKE);
 			}
 		}
-			
+	}
+
+	private void addPits() {
+		// TODO Auto-generated method stub
+
 	}
 
 	public void writeLevel(String url) {
 		try {
-			for(Element elem: links)
-				System.out.println(elem.attributes().get("href"));
-			
 			padMatrix();
 			transposeMatrix();
 			addSpikes();
 			addPits();
-			
+
 			PrintWriter outFile = new PrintWriter("./levels/" + url.hashCode()
 					+ ".level");
 			outFile.println("URL: " + url);
@@ -106,20 +110,20 @@ public class Visitor implements NodeVisitor {
 			outFile.println("/tiles/block2.png " + Level.TILE_IMPASSABLE);
 			outFile.println();
 			outFile.println("[Layout]");
-//			printing skybox
+			// printing skybox
 			StringBuilder sky = new StringBuilder();
-			for(int x = 0; x < matrix.get(0).size();x ++)
+			for (int x = 0; x < matrix.get(0).size(); x++)
 				sky.append("0 ");
-			for(int x = 0; x < SKYBOX; x++)
+			for (int x = 0; x < SKYBOX; x++)
 				outFile.println(sky);
-			
+
 			for (int row = 0; row < matrix.size(); row++) {
 				for (int col = 0; col < matrix.get(0).size(); col++) {
-					if(matrix.get(row).get(col) == countTags.get("a"))
+					if (matrix.get(row).get(col) == countTags.get("a"))
 						outFile.print("3 ");
 					else if (matrix.get(row).get(col) > 0)
 						outFile.print("1 ");
-					else if(matrix.get(row).get(col) == SPIKE)
+					else if (matrix.get(row).get(col) == SPIKE)
 						outFile.print("2 ");
 					else
 						outFile.print("0 ");
@@ -132,11 +136,6 @@ public class Visitor implements NodeVisitor {
 			e.printStackTrace();
 		}
 
-	}
-
-	private void addPits() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
