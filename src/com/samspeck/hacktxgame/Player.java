@@ -16,7 +16,7 @@ public class Player extends Entity {
 		inputState = input.getState();
 		prevInputState = inputState;
 		
-		currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
+		currentSprite = new Sprite("/bone.png", 50, 80, 2, 40);
 	}
 	
 	@Override
