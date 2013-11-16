@@ -34,7 +34,7 @@ public class Player extends Entity {
 
 		velocity.x = xMotion * WALK_SPEED;
 		
-		if (inputState.isButtonDown(Buttons.Jump) && prevInputState.isButtonUp(Buttons.Jump)) {
+		if (onGround && inputState.isButtonDown(Buttons.Jump) && prevInputState.isButtonUp(Buttons.Jump)) {
 			velocity.y = -JUMP_VELOCITY;
 		}
 		
