@@ -52,14 +52,14 @@ public class Visitor implements NodeVisitor {
 			for (int pad = maxSize - row.size(); pad > 0; pad--)
 				row.add(0);
 	}
-
+// level generation rules
 	public void writeLevel(String url) {
 		try {
 			PrintWriter outFile = new PrintWriter("./levels/"+url.hashCode()+".level");
 			padMatrix();
 			outFile.println("URL: "+url);
-			outFile.println("/tiles/block.png");
-			outFile.println("/tiles/spike.png");
+			outFile.println("/tiles/block.png "+Level.TILE_IMPASSABLE);
+			outFile.println("/tiles/spike.png "+Level.TILE_OBSTACLE);
 			outFile.println();
 			outFile.println("[Layout]");
 			for (int col = maxSize - 1; col >= 0; col--) {

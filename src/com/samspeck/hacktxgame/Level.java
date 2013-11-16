@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Level {
-	static final int TILE_WIDTH = 32;
-	static final int TILE_HEIGHT = 32;
+	static final int TILE_WIDTH = 34;
+	static final int TILE_HEIGHT = 34;
 	
 	public static final int TILE_PASSABLE = 0;
 	public static final int TILE_IMPASSABLE = 1;
