@@ -33,9 +33,10 @@ public class Entity {
 		}
 	}
 	
-	public void render(Graphics g, ImageObserver obs) {
+	public void render(Graphics g, ImageObserver obs, Camera cam) {
 		if (currentSprite != null) {
-			currentSprite.render(g, obs, new Point((int)Math.round(position.x), (int)Math.round(position.y)));
+			Point pos = new Point((int)Math.round(position.x - cam.position.x), (int)Math.round(position.y - cam.position.y));
+			currentSprite.render(g, obs, pos);
 		}
 	}
 }
