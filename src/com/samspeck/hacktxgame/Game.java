@@ -19,9 +19,9 @@ public class Game extends BaseGame {
 	
 	public Game() {
 		circle = new Entity();
-		circle.currentSprite = new Sprite("/circle.png", 32, 32, 0, 0);
+		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
 		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
-		circle.velocity.y = 1f;
+		//circle.acceleration.y = 0.01f;
 	}
 
 	@Override

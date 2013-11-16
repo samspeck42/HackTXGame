@@ -35,7 +35,7 @@ public class Entity {
 	
 	public void render(Graphics g, ImageObserver obs) {
 		if (currentSprite != null) {
-			currentSprite.render(g, obs, new Point((int)position.x, (int)position.y));
+			currentSprite.render(g, obs, new Point((int)Math.round(position.x), (int)Math.round(position.y)));
 		}
 	}
 }

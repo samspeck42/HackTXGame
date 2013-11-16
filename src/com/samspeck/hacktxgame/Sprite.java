@@ -30,12 +30,24 @@ public class Sprite {
 	}
 	
 	public void updateAnimation() {
-		// TODO
+		if (currentDelay >= delay) {
+            currentFrame++;
+            currentDelay = 0;
+            if (currentFrame >= numFrames)
+                currentFrame = 0;
+        }
+        else
+            currentDelay++;
+	}
+	
+	public void resetAnimation() {
+		currentFrame = 0;
+        currentDelay = 0;
 	}
 	
 	public void render(Graphics g, ImageObserver obs, Point pos) {
 		g.drawImage(sprite, pos.x, pos.y, pos.x + frameWidth, pos.y + frameHeight, 
-				0, 0, frameWidth, frameHeight, obs);
+				currentFrame * frameWidth, 0, currentFrame * frameWidth + frameWidth, frameHeight, obs);
 	}
 
 }
