@@ -1,5 +1,8 @@
 package com.samspeck.hacktxgame;
 
+import com.samspeck.hacktxgame.Entitys.Enemy;
+import com.samspeck.hacktxgame.Entitys.Spiky;
+
 public class Player extends Entity {
 	
 	static final float gravitationalAcceleration = .5f;
@@ -16,7 +19,7 @@ public class Player extends Entity {
 		inputState = input.getState();
 		prevInputState = inputState;
 		
-		currentSprite = new Sprite("/bone.png", 50, 80, 2, 40);
+		currentSprite = new Sprite("/bone.png", 40, 64, 2, 40);
 	}
 	
 	@Override
@@ -44,5 +47,12 @@ public class Player extends Entity {
 		prevInputState = inputState;
 		
 		super.update();
+	}
+
+	public void reactToEnemyCollision(Enemy enemy) {
+		//if(!(enemy instanceof Spiky) && position.y > enemy.position.y)
+		//		enemy.die();
+		//else
+			game.gameover();
 	}
 }
