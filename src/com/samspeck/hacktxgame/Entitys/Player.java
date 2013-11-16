@@ -1,11 +1,13 @@
-package com.samspeck.hacktxgame;
+package com.samspeck.hacktxgame.Entitys;
 
 import java.awt.Point;
 
-import javax.swing.text.Position;
-
-import com.samspeck.hacktxgame.Entitys.Enemy;
-import com.samspeck.hacktxgame.Entitys.Spiky;
+import com.samspeck.hacktxgame.Buttons;
+import com.samspeck.hacktxgame.Game;
+import com.samspeck.hacktxgame.Input;
+import com.samspeck.hacktxgame.InputState;
+import com.samspeck.hacktxgame.Level;
+import com.samspeck.hacktxgame.Sprite;
 
 public class Player extends Entity {
 	
@@ -82,6 +84,10 @@ public class Player extends Entity {
 		//if(!(enemy instanceof Spiky) && position.y > enemy.position.y)
 		//		enemy.die();
 		//else
-			game.gameover();
+		if(enemy instanceof Goal)
+		{
+			game.win();
+		}
+		game.gameover();
 	}
 }

@@ -4,6 +4,7 @@ import com.samspeck.hacktxgame.Buttons;
 import com.samspeck.hacktxgame.Game;
 import com.samspeck.hacktxgame.Input;
 import com.samspeck.hacktxgame.InputState;
+import com.samspeck.hacktxgame.Sprite;
 
 public class Delta extends Alpha {
 	private int count = 0;
@@ -17,6 +18,7 @@ public class Delta extends Alpha {
 		input = new Input(game);
 		inputState = input.getState();
 		prevInputState = inputState;
+		currentSprite = new Sprite("/dokuro.png", 40, 40, 1, 40);
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class Delta extends Alpha {
 		if(count == 75)
 		{
 			// jump
-			velocity.y = 1.11f*jump_velocity;
+			velocity.y = 1.4f*jump_velocity;
 		}
 		count = (count > 0 )? count-1 : count;
 		

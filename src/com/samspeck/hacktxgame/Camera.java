@@ -2,7 +2,7 @@ package com.samspeck.hacktxgame;
 
 public class Camera {
 	
-	Vector2D position;
+	public Vector2D position;
 	
 	public Camera() {
 		position = new Vector2D(0, 0);

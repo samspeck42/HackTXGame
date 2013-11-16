@@ -1,18 +1,26 @@
 package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Game;
+import com.samspeck.hacktxgame.Sprite;
 
 public class Alpha extends Enemy {
 	
 	public Alpha(Game game) {
 		super(game);
+		currentSprite = new Sprite("/obake_a.png", 40, 40, 1, 40);
 	}
 	
 	@Override
 	public void makeMove() {;
-		velocity.x = walk_speed;
-		if(false)
-			velocity.x = -walk_speed;
+		if(stuckAtWall)
+		{
+			stuckAtWall = false;
+			velocity.x = -velocity.x;
+		}
+		else
+		{
+			velocity.x = walk_speed;
+		}
 	}
 
 	@Override

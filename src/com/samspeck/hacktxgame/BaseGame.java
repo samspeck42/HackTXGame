@@ -39,7 +39,8 @@ public abstract class BaseGame extends JPanel implements Runnable {
 			sleepTime = msPerFrame - timeDiff;
 			
 			try {
-				Thread.sleep(sleepTime);
+				if(sleepTime > 0)
+					Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -1,8 +1,14 @@
-package com.samspeck.hacktxgame;
+package com.samspeck.hacktxgame.Entitys;
 
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.ImageObserver;
+
+import com.samspeck.hacktxgame.Camera;
+import com.samspeck.hacktxgame.Game;
+import com.samspeck.hacktxgame.Level;
+import com.samspeck.hacktxgame.Sprite;
+import com.samspeck.hacktxgame.Vector2D;
 
 
 public class Entity {
@@ -13,6 +19,7 @@ public class Entity {
 	
 	public Sprite currentSprite;
 	public boolean onGround = false;
+	public boolean stuckAtWall = false;
 	
 	Game game;
 	
@@ -73,12 +80,15 @@ public class Entity {
                         velocity.x = 0f;
                         acceleration.x = 0f;
                         collided = true;
+                        stuckAtWall = true;
                         break;
                     }
                 }
 
                 if (collided)
+                {
                     break;
+                }
             }
         }
         position.x += velocity.x;
