@@ -24,6 +24,7 @@ To Add
 8. A level selection screen to play old levels
 9. A pause screen
 10. Leaderboards
+11. Background
 
 Challenges
 ==========
