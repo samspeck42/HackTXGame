@@ -1,23 +1,25 @@
 package com.samspeck.hacktxgame;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class JSOUP {
-	
-	public void promptUser(){
-		String url;
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Please input a url to generate a level: ");
-		while(scan.hasNext()){
-			url = scan.next();
-			if(generateLevel(url))
-				return;
-			System.out.println("Sorry, \"" + url + "\" couldn't be reached =(");
-			System.out.print("Please input a url to generate a level: ");
+
+	// TODO allow user to select old levels
+	public String promptUser() {
+		String url = (String) JOptionPane.showInputDialog("Please enter a URL",
+				"http://");
+		if (url != null) {
+			if (generateLevel(url))
+				return url;
 		}
+		JPanel panel = new JPanel();
+		JOptionPane.showMessageDialog(panel, "Could not access " + url,
+				"Error", JOptionPane.ERROR_MESSAGE);
+		return null;
 	}
 
 	private boolean generateLevel(String url) {
@@ -28,8 +30,9 @@ public class JSOUP {
 			visitor.writeLevel(url);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 }

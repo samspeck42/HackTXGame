@@ -44,10 +44,15 @@ public class Level {
 		boolean readingLayout = false;
 		
 		try {
-			in = new BufferedReader(new FileReader(Game.class.getResource(levelPath).getFile()));
+			System.out.println(levelPath);
+			in = new BufferedReader(new FileReader(levelPath));
 			
 			while ((line = in.readLine()) != null) {
 				if (line.isEmpty()) {
+					continue;
+				}
+				
+				if(line.contains("URL: ")){
 					continue;
 				}
 				
