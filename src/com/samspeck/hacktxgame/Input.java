@@ -14,7 +14,7 @@ public class Input implements KeyListener {
 		c.addKeyListener(this);
 		
 		buttonMap = new HashMap<Integer, Buttons>();
-		buttonMap.put(KeyEvent.VK_UP, Buttons.Up);
+		buttonMap.put(KeyEvent.VK_UP, Buttons.Jump);
 		buttonMap.put(KeyEvent.VK_DOWN, Buttons.Down);
 		buttonMap.put(KeyEvent.VK_LEFT, Buttons.Left);
 		buttonMap.put(KeyEvent.VK_RIGHT, Buttons.Right);
