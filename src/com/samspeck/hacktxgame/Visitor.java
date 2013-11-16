@@ -10,7 +10,7 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeVisitor;
 
 public class Visitor implements NodeVisitor {
-	private static final int SKYBOX = 10;
+	static final int SKYBOX = 10;
 	private static final int SPIKE = -1;
 	
 	ArrayList<ArrayList<Integer>> matrix;
