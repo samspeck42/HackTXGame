@@ -63,7 +63,7 @@ public class Game extends BaseGame {
 					enemy.currentSprite.frameWidth,
 					enemy.currentSprite.frameHeight);
 			if (playerRectangle.intersects(enemyRectangle)) {
-				player.reactToEnemyCollision();
+				player.reactToEnemyCollision(enemy);
 			}
 		}
 

@@ -1,5 +1,7 @@
 package com.samspeck.hacktxgame;
 
+import com.samspeck.hacktxgame.Entitys.Enemy;
+
 public class Player extends Entity {
 	
 	static final float gravitationalAcceleration = .5f;
@@ -43,7 +45,7 @@ public class Player extends Entity {
 		super.update();
 	}
 
-	public void reactToEnemyCollision() {
+	public void reactToEnemyCollision(Enemy enemy) {
 		System.out.println("ouch");
 		game.gameover();
 		
