@@ -27,7 +27,7 @@ public class Game extends BaseGame {
 		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
 		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		// circle.acceleration.y = 0.01f;
-		level = new Level("/test");
+		level = new Level("/test.level");
 		input = new Input(this);
 		inputState = input.getState();
 		prevInputState = inputState;
