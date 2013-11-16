@@ -31,9 +31,15 @@ public class Player extends Entity {
 
 		float xMotion = 0;
 		if (inputState.isButtonDown(Buttons.Left))
+		{
+			game.footsteps--;
 			xMotion--;
+		}
 		if (inputState.isButtonDown(Buttons.Right))
+		{
 			xMotion++;
+			game.footsteps++;
+		}
 
 		velocity.x = xMotion * WALK_SPEED;
 		

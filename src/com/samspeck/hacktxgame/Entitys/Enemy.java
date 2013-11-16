@@ -7,8 +7,8 @@ import com.samspeck.hacktxgame.Sprite;
 public abstract class Enemy extends Entity {	
 
 	public static final float gravitationalAcceleration = .5f;
-	protected static float walk_speed = -1;
-	protected static int jump_velocity = -10;
+	protected float walk_speed = -1;
+	protected int jump_velocity = -10;
 	
 	public Enemy(Game game) {
 		super(game);
