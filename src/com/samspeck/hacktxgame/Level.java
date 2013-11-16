@@ -2,6 +2,7 @@ package com.samspeck.hacktxgame;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.ImageObserver;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -86,8 +87,10 @@ public class Level {
 			for (int c = 0; c < tileMap[r].length; c++) {
 				int index = tileMap[r][c];
 				
-				if (index > 0) {
+				if (index > -1) {
+					Point pos = new Point(c * TILE_WIDTH, r * TILE_HEIGHT);
 					
+					g.drawImage(tileImages.get(index), pos.x, pos.y, TILE_WIDTH, TILE_HEIGHT, obs);
 				}
 			}
 		}

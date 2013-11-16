@@ -16,12 +16,15 @@ public class Game extends BaseGame {
 	public static final int SCREEN_HEIGHT = SCREEN_WIDTH * 2/3;
 	
 	Entity circle;
+	Level level;
 	
 	public Game() {
 		circle = new Entity();
 		circle.currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
 		circle.position = new Vector2D(SCREEN_WIDTH / 2, 0);
 		//circle.acceleration.y = 0.01f;
+		
+		level = new Level("/test");
 	}
 
 	@Override
@@ -39,6 +42,7 @@ public class Game extends BaseGame {
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
+		level.render(g, this);
 		circle.render(g, this);
 	}
 	
