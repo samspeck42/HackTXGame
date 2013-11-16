@@ -4,6 +4,12 @@ import com.samspeck.hacktxgame.Entity;
 
 public abstract class Enemy extends Entity {
 
+	public Entity human;
+	
+	public Enemy(Entity human)
+	{
+		this.human = human;
+	}
 	// movement pattern
 		//left right turn around on obstacle (air or land)
 		//up down turn around on obstacle (air or land)
@@ -32,5 +38,10 @@ public abstract class Enemy extends Entity {
 		// instantly move one direction when player approach from above
 	// mutate?
 	// sounds?
-	
+
+	@Override
+	public void update() {
+		makeMove();
+		super.update();
+	}
 }

@@ -1,23 +1,29 @@
 package com.samspeck.hacktxgame.Entitys;
 
-public class Delta extends Enemy {
+import com.samspeck.hacktxgame.Entity;
+
+public class Delta extends Alpha {
+	private int count = 0;
+	public final int JUMPING_SPEED = -14;
+	
+	public Delta(Entity human) {
+		super(human);
+	}
 
 	@Override
 	public void makeMove() {
-		// TODO Auto-generated method stub
-		
+		super.makeMove();
+		if(count == 75)
+		{
+			// jump
+			velocity.y = JUMPING_SPEED;
+		}
+		count = (count > 0 )? count-1 : count;
 	}
-
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub
-		
+	public void jump()
+	{
+		if(count <1)
+			count = 75;
 	}
 
 }
