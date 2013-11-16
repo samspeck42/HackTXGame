@@ -2,11 +2,18 @@ package com.samspeck.hacktxgame.Entitys;
 
 import com.samspeck.hacktxgame.Entity;
 import com.samspeck.hacktxgame.Game;
+import com.samspeck.hacktxgame.Sprite;
 
-public abstract class Enemy extends Entity {
+public abstract class Enemy extends Entity {	
 
+	public static final float gravitationalAcceleration = .5f;
+	protected static float walk_speed = -1;
+	protected static int jump_velocity = -10;
+	
 	public Enemy(Game game) {
 		super(game);
+		
+		currentSprite = new Sprite("/circle.png", 32, 32, 2, 40);
 	}
 
 	// movement pattern
@@ -40,6 +47,7 @@ public abstract class Enemy extends Entity {
 
 	@Override
 	public void update() {
+		acceleration.y = gravitationalAcceleration;
 		makeMove();
 		super.update();
 	}
