@@ -12,14 +12,17 @@ import org.jsoup.select.NodeVisitor;
 public class Visitor implements NodeVisitor {
 	private static final int SKYBOX = 10;
 	private static final int SPIKE = -1;
+	
 	ArrayList<ArrayList<Integer>> matrix;
 	HashMap<String, Integer> countTags;
+	ArrayList<Element> links;
 	int value;
 	int maxSize;
 
 	public Visitor() {
 		matrix = new ArrayList<ArrayList<Integer>>();
 		countTags = new HashMap<String, Integer>();
+		links = new ArrayList<Element>();
 		value = 0;
 		maxSize = 0;
 	}
@@ -38,6 +41,9 @@ public class Visitor implements NodeVisitor {
 		for (int x = 0; x < depth; x++)
 			row.add(countTags.get(elem.tagName()));
 
+		if(elem.tagName()=="a")
+			links.add(elem);
+		
 		if (maxSize < row.size())
 			maxSize = row.size();
 		if (row.size() > 0)
@@ -75,7 +81,7 @@ public class Visitor implements NodeVisitor {
 			ArrayList<Integer> row = matrix.get(r);
 			for(int c = 1; c<row.size()-1; c++){
 				if(row.get(c) == 0 && row.get(c-1) > 0 && row.get(c+1) > 0 && matrix.get(r+1).get(c) > 0){
-					row.set(c,-1);
+					row.set(c,SPIKE);
 				}
 			}
 		}
@@ -84,6 +90,9 @@ public class Visitor implements NodeVisitor {
 
 	public void writeLevel(String url) {
 		try {
+			for(Element elem: links)
+				System.out.println(elem.attributes().get("href"));
+			
 			padMatrix();
 			transposeMatrix();
 			addSpikes();
@@ -94,6 +103,7 @@ public class Visitor implements NodeVisitor {
 			outFile.println("URL: " + url);
 			outFile.println("/tiles/block.png " + Level.TILE_IMPASSABLE);
 			outFile.println("/tiles/spike.png " + Level.TILE_OBSTACLE);
+			outFile.println("/tiles/block2.png " + Level.TILE_IMPASSABLE);
 			outFile.println();
 			outFile.println("[Layout]");
 //			printing skybox
@@ -105,9 +115,11 @@ public class Visitor implements NodeVisitor {
 			
 			for (int row = 0; row < matrix.size(); row++) {
 				for (int col = 0; col < matrix.get(0).size(); col++) {
-					if (matrix.get(row).get(col) > 0)
+					if(matrix.get(row).get(col) == countTags.get("a"))
+						outFile.print("3 ");
+					else if (matrix.get(row).get(col) > 0)
 						outFile.print("1 ");
-					else if(matrix.get(row).get(col) == -1)
+					else if(matrix.get(row).get(col) == SPIKE)
 						outFile.print("2 ");
 					else
 						outFile.print("0 ");

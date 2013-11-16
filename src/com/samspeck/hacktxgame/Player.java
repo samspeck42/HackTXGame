@@ -21,6 +21,9 @@ public class Player extends Entity {
 	
 	@Override
 	public void update() {
+		if(position.y > (game.level.height/game.level.TILE_HEIGHT))
+			game.
+		
 		acceleration.y = gravitationalAcceleration;
 		
 		// handle input
