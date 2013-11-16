@@ -1,23 +1,22 @@
 package com.samspeck.hacktxgame.Entitys;
 
-public class Epsilon extends Enemy {
+import com.samspeck.hacktxgame.Entity;
 
+public class Epsilon extends Alpha {
+
+	public Epsilon(Entity human) {
+		super(human);
+	}
+	
 	@Override
 	public void makeMove() {
-		// TODO Auto-generated method stub
+		super.makeMove();
+		if(Math.abs(position.x - human.position.x) < 150)
+			acceleration.x = -5f;
+		else
+			acceleration.x = 0;
 		
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void die() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

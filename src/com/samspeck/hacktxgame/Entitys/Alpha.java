@@ -1,13 +1,20 @@
 package com.samspeck.hacktxgame.Entitys;
 
+import com.samspeck.hacktxgame.Entity;
+
 public class Alpha extends Enemy {
-	public static final int MOVEMENT_SPEED = 10;
 	
+	public Alpha(Entity human) {
+		super(human);
+	}
+
+	public float movement_speed = -1;
+
 	@Override
 	public void makeMove() {
-		velocity.x = MOVEMENT_SPEED;
+		velocity.x = movement_speed;
 		if(false/*ran into concrete*/)
-			velocity.x = -MOVEMENT_SPEED;
+			velocity.x = -movement_speed;
 	}
 
 	@Override
