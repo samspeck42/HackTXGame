@@ -1,6 +1,7 @@
 HackTXGame: Web Platformer
 ==========================
 By: Devin Sandhu, Po-Chen Yang, and Sam Speck
+Art credit: David Yamato
 
 Overview
 --------
